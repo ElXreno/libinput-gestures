@@ -6,6 +6,8 @@ Release:        1%{?dist}
 License:        GNU
 URL:            https://github.com/bulletmark/%{name}
 
+BuildArch:      noarch
+
 Source0:        %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 Requires: xdotool
