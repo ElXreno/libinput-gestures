@@ -3,8 +3,8 @@ Name:           libinput-gestures
 Version:        2.42
 Release:        1%{?dist}
 
-License:        GNU
-URL:            https://github.com/bulletmark/%{name}
+License:        GNU GPLv3
+URL:            https://github.com/bulletmark/libinput-gestures
 
 BuildArch:      noarch
 
