@@ -1,7 +1,7 @@
 Summary:        libinput gestures
 Name:           libinput-gestures
 Version:        2.42
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 License:        GNU GPLv3
 URL:            https://github.com/bulletmark/libinput-gestures
@@ -13,7 +13,7 @@ Source0:        %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Requires: xdotool
 Requires: wmctrl
 
-#BuildRequires: make
+BuildRequires: make
 BuildRequires: desktop-file-utils
 
 %description
@@ -23,24 +23,7 @@ Libinput-gestures is a utility which reads libinput gestures from your touchpad 
 %autosetup -n %{name}-%{version} -p1
 
 %install
-# Installing executables...
-%{__mkdir_p} "%{buildroot}%{_bindir}"
-%{__install} -m 0755 -p %{name} "%{buildroot}%{_bindir}/%{name}"
-%{__install} -m 0755 -p %{name}-setup "%{buildroot}%{_bindir}/%{name}-setup"
-
-# Installing desktop shortcut...
-desktop-file-install --dir="%{buildroot}%{_datadir}/applications" %{name}.desktop
-
-# Installing icon...
-dir="%{buildroot}%{_datadir}/icons/hicolor/128x128/apps"
-%{__install} -d "$dir"
-%{__install} -m 0644 -p %{name}.png "$dir/%{name}.png"
-
-# Installing configuration file...
-dir="%{buildroot}%{_sysconfdir}"
-%{__install} -d "$dir"
-%{__install} -m 0644 -p %{name}.conf %{buildroot}%{_sysconfdir}/%{name}.conf
-#install -CDv -m 0644 -t $DESTDIR$DOCDIR README.md
+%make_install
 
 %post
 echo "Add users to 'input' group, if it needed"
@@ -48,7 +31,7 @@ echo "Add libinput-gestures to autostart by typing 'libinput-gestures-setup auto
 echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 
 %files
-%doc README.md
+%doc %{_datadir}/doc/%{name}/README.md
 %{_bindir}/%{name}
 %{_bindir}/%{name}-setup
 %{_datadir}/applications/%{name}.desktop
@@ -56,5 +39,8 @@ echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Wed Apr 17 2019 Michael Hrechyn - 2.42-2
+- Now the installation past through make install
+
 * Tue Apr 16 2019 Michael Hrechyn
 - Initial package
