@@ -1,17 +1,19 @@
 Name:           libinput-gestures
 Version:        2.42
-Release:        3%{?dist}
+Release:        4%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
 
 License:        GPLv3+
 URL:            https://github.com/bulletmark/libinput-gestures
-Source0:        %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  make
 
+Requires:       python3 >= 3.4
+Requires:       hicolor-icon-theme
 Requires:       wmctrl
 Requires:       xdotool
 
@@ -44,6 +46,9 @@ echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Thu Apr 18 2019 Michael Hrechyn <elxreno@gmail.com> - 2.42-4
+- Merge spec file from another spec
+
 * Thu Apr 18 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 2.42-3
 - Update spec file
 
