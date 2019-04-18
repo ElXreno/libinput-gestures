@@ -1,29 +1,34 @@
-Summary:        libinput gestures
 Name:           libinput-gestures
 Version:        2.42
-Release:        2%{?dist}
+Release:        3%{?dist}
 
-License:        GNU GPLv3
+Summary:        Actions gestures on your touchpad using libinput
+
+License:        GPLv3+
 URL:            https://github.com/bulletmark/libinput-gestures
-
+Source0:        %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 
-Source0:        %{url}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
+BuildRequires:  desktop-file-utils
+BuildRequires:  make
 
-Requires: xdotool
-Requires: wmctrl
-
-BuildRequires: make
-BuildRequires: desktop-file-utils
+Requires:       wmctrl
+Requires:       xdotool
 
 %description
-Libinput-gestures is a utility which reads libinput gestures from your touchpad and maps them to gestures you configure in a configuration file. Each gesture can be configured to activate a shell command which is typically an xdotool command to action desktop/window/application keyboard combinations and commands.
+Libinput-gestures is a utility which reads libinput gestures from your touchpad
+and maps them to gestures you configure in a configuration file. Each gesture
+can be configured to activate a shell command which is typically an xdotool
+command to action desktop/window/application keyboard combinations and commands.
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%autosetup
 
 %install
 %make_install
+
+%check
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %post
 echo "Add users to 'input' group, if it needed"
@@ -31,7 +36,7 @@ echo "Add libinput-gestures to autostart by typing 'libinput-gestures-setup auto
 echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 
 %files
-%doc %{_datadir}/doc/%{name}/README.md
+%doc README.md
 %{_bindir}/%{name}
 %{_bindir}/%{name}-setup
 %{_datadir}/applications/%{name}.desktop
@@ -39,6 +44,9 @@ echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Thu Apr 18 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 2.42-3
+- Update spec file
+
 * Wed Apr 17 2019 Michael Hrechyn - 2.42-2
 - Now the installation past through make install
 
