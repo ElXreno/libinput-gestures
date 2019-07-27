@@ -1,5 +1,5 @@
 Name:           libinput-gestures
-Version:        2.42
+Version:        2.45
 Release:        4%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
@@ -46,6 +46,9 @@ echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Sat Jul 27 2019 ElXreno <elxreno@gmail.com>
+- Bump version
+
 * Thu Apr 18 2019 Michael Hrechyn <elxreno@gmail.com> - 2.42-4
 - Merge spec file from another spec
 
