@@ -1,5 +1,5 @@
 Name:           libinput-gestures
-Version:        2.45
+Version:        2.47
 Release:        1%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
@@ -33,9 +33,9 @@ command to action desktop/window/application keyboard combinations and commands.
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %post
-echo "Add users to 'input' group, if it needed"
-echo "Add libinput-gestures to autostart by typing 'libinput-gestures-setup autostart', if it needed"
-echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
+echo "You must add yourself to input group and re-login (or reboot) before using this program. Execute \"sudo usermod -aG input $(whoami)\""
+echo "Add service to autostart (if required): \"libinput-gestures-setup autostart\""
+echo "Start service: \"libinput-gestures-setup start\""
 
 %files
 %doc README.md
@@ -46,17 +46,20 @@ echo "Run libinput-gestures by typing 'libinput-gestures-setup start'"
 %{_sysconfdir}/%{name}.conf
 
 %changelog
-* Sat Jul 27 2019 ElXreno <elxreno@gmail.com>
-- Bump version
+* Sat Oct 19 2019 ElXreno <elxreno@gmail.com> - 2.47-1
+- Bump to 2.47 version and update post hook
 
-* Thu Apr 18 2019 Michael Hrechyn <elxreno@gmail.com> - 2.42-4
+* Sat Jul 27 2019 ElXreno <elxreno@gmail.com> - 2.45-1
+- Bump to 2.45 version
+
+* Thu Apr 18 2019 ElXreno <elxreno@gmail.com> - 2.42-4
 - Merge spec file from another spec
 
 * Thu Apr 18 2019 Artem Polishchuk <ego.cordatus@gmail.com> - 2.42-3
 - Update spec file
 
-* Wed Apr 17 2019 Michael Hrechyn - 2.42-2
+* Wed Apr 17 2019 ElXreno <elxreno@gmail.com> - 2.42-2
 - Now the installation past through make install
 
-* Tue Apr 16 2019 Michael Hrechyn
+* Tue Apr 16 2019 ElXreno <elxreno@gmail.com> - 2.42-1
 - Initial package
