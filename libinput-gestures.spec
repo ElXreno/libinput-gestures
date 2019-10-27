@@ -1,5 +1,5 @@
 Name:           libinput-gestures
-Version:        2.47
+Version:        2.48
 Release:        1%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
@@ -33,9 +33,11 @@ command to action desktop/window/application keyboard combinations and commands.
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %post
-echo "You must add yourself to input group and re-login (or reboot) before using this program. Execute \"sudo usermod -aG input $(whoami)\""
-echo "Add service to autostart (if required): \"libinput-gestures-setup autostart\""
-echo "Start service: \"libinput-gestures-setup start\""
+if [ $1 -gt 1 ] ; then
+    echo "You must add yourself to input group and re-login (or reboot) before using this program. Execute \"sudo usermod -aG input $(whoami)\""
+    echo "Add service to autostart (if required): \"libinput-gestures-setup autostart\""
+    echo "Start service: \"libinput-gestures-setup start\""
+fi
 
 %files
 %doc README.md
@@ -43,9 +45,12 @@ echo "Start service: \"libinput-gestures-setup start\""
 %{_bindir}/%{name}-setup
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
-%{_sysconfdir}/%{name}.conf
+%config(noreplace) %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Sun Oct 27 2019 ElXreno <elxreno@gmail.com> - 2.48-1
+- Bump to 2.48 version
+
 * Sat Oct 19 2019 ElXreno <elxreno@gmail.com> - 2.47-1
 - Bump to 2.47 version and update post hook
 
