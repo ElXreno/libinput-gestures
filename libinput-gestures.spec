@@ -1,6 +1,6 @@
 Name:           libinput-gestures
 Version:        2.49
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
 
@@ -13,7 +13,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  make
 
 Requires:       hicolor-icon-theme
-Requires:       libinput
+Requires:       libinput, libinput-utils
 Requires:       python3 >= 3.5
 Requires:       wmctrl
 Requires:       xdotool
@@ -49,6 +49,9 @@ fi
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Mon Mar 09 2020 ElXreno <elxreno@gmail.com> - 2.49-2
+- Added libinput-utils dependency
+
 * Mon Mar 09 2020 ElXreno <elxreno@gmail.com> - 2.49-1
 - Bump to 2.49 version
 
