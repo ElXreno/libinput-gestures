@@ -1,6 +1,6 @@
 Name:           libinput-gestures
-Version:        2.49
-Release:        2%{?dist}
+Version:        2.51
+Release:        1%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
 
@@ -45,10 +45,13 @@ fi
 %{_bindir}/%{name}
 %{_bindir}/%{name}-setup
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_datadir}/icons/hicolor/128x128/apps/%{name}.svg
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Sun Jul 12 2020 ElXreno <elxreno@gmail.com> - 2.51-1
+- Bump to 2.51 version
+
 * Mon Mar 09 2020 ElXreno <elxreno@gmail.com> - 2.49-2
 - Added libinput-utils dependency
 
