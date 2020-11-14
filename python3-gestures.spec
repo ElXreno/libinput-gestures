@@ -1,7 +1,7 @@
 %global srcname gestures
 
 Name:           python3-%{srcname}
-Version:        0.2.2
+Version:        0.2.3
 Release:        1%{?dist}
 Summary:        A minimal Gtk+ GUI app for libinput-gestures
 
@@ -51,5 +51,8 @@ A minimal Gtk+ GUI app for libinput-gestures.
 
 
 %changelog
+* Sat Nov 14 08:22:32 +03 2020 ElXreno <elxreno@gmail.com> - 0.2.3-1
+- Update to version 0.2.3
+
 * Mon Mar  9 2020 ElXreno <elxreno@gmail.com>
 - Initial packaging
