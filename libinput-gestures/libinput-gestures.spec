@@ -1,5 +1,5 @@
 Name:           libinput-gestures
-Version:        2.57
+Version:        2.69
 Release:        1%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
@@ -49,6 +49,9 @@ fi
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Mon Oct 11 2021 Chris Cowley <chris@cowley.tech> - 2.69-1
+- Update to version 2.69
+
 * Wed Feb 03 2021 ElXreno <elxreno@gmail.com> - 2.57-1
 - Update to version 2.57
 
