@@ -1,6 +1,6 @@
 Name:           libinput-gestures
 Version:        2.69
-Release:        1%{?dist}
+Release:        2%{?dist}
 
 Summary:        Actions gestures on your touchpad using libinput
 
@@ -11,6 +11,7 @@ BuildArch:      noarch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  make
+BuildRequires:  systemd
 
 Requires:       hicolor-icon-theme
 Requires:       libinput, libinput-utils
@@ -34,11 +35,14 @@ command to action desktop/window/application keyboard combinations and commands.
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %post
-if [ $1 -gt 1 ] ; then
-    echo "You must add yourself to input group and re-login (or reboot) before using this program. Execute \"sudo usermod -aG input $(whoami)\""
-    echo "Add service to autostart (if required): \"libinput-gestures-setup autostart\""
-    echo "Start service: \"libinput-gestures-setup start\""
-fi
+%systemd_user_post %{name}.service
+
+%preun
+%systemd_user_preun %{name}.service
+
+%postun
+%systemd_user_postun_with_restart %{name}.service
+
 
 %files
 %doc README.md
@@ -46,9 +50,13 @@ fi
 %{_bindir}/%{name}-setup
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/128x128/apps/%{name}.svg
+%{_userunitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 
 %changelog
+* Wed Oct 13 2021 ElXreno <elxreno@gmail.com> - 2.69-2
+- Adopt for systemd service
+
 * Mon Oct 11 2021 Chris Cowley <chris@cowley.tech> - 2.69-1
 - Update to version 2.69
 
